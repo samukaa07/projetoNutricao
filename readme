@@ -3,3 +3,11 @@ npm start
 
 Endereço para acessar o site:
 http://localhost:3000/index.html
+
+Se for utilizar junto com o banco utilizei o MYSQL, 
+Database: nutricao
+usuário: root
+senha: ""
+
+Precisa criar a tabela 'nutricao'
+E as colunas : (ID, nome, cpf, dataNasc, tel, idade, peso, altura).
