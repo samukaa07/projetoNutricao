@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes Cadastrados</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Clientes Cadastrados</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="cadastro.html">Cadastro de Clientes</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+    <main>
+        <table id="listaClientes">
+            <thead>
+                <tr> 
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Data de Nascimento</th>
+                    <th>Idade</th>
+                    <th>Peso (kg)</th>
+                    <th>Altura (cm)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead> 
+            <tbody>
+                <!-- Os clientes serão inseridos aqui -->
+            </tbody>
+        </table>
+    </main>    
+    <footer>
+        <p>© 2024 Nutrição Eficiente. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+        window.addEventListener('load', function () {
+            fetch('/clientes-data')
+            .then(response => response.json())
+            .then(data => {
+                const tabela = document.querySelector('#listaClientes tbody');
+                data.forEach(cliente => {
+                    let linha = tabela.insertRow();
+                    linha.insertCell(0).textContent = cliente.nome;
+                    linha.insertCell(1).textContent = cliente.cpf;
+                    linha.insertCell(2).textContent = cliente.tel;
+                    linha.insertCell(3).textContent = cliente.dataNasc;
+                    linha.insertCell(4).textContent = cliente.idade;
+                    linha.insertCell(5).textContent = cliente.peso;
+                    linha.insertCell(6).textContent = cliente.altura;
+                    let celAcoes = linha.insertCell(7);
+            let btnExcluir = document.createElement('button');
+            btnExcluir.textContent = 'Excluir';
+            btnExcluir.onclick = function() { excluirCliente(cliente.ID); };
+            celAcoes.appendChild(btnExcluir);
+        });
+    })
+    .catch(error => console.error('Erro ao carregar os clientes:', error));
+});
+
+function excluirCliente(id) {
+    if(confirm('Tem certeza que deseja excluir este cliente?')) {
+        fetch(`/excluir-cliente/${id}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            location.reload(); // Recarrega a página para atualizar a lista de clientes
+        })
+        .catch(error => console.error('Erro ao excluir cliente:', error));
+    }
+}
+        </script></body>
+</html>

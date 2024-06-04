@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Lembre-se de vincular seu arquivo CSS -->
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Clientes</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="clientes.html">Clientes Cadastrados</a></li>
+        </ul>
+    </nav>
+    <main>    
+    </main>
+    <form id="cadastroCliente" action="/cadastro" method="POST">       
+        <input class="input-field" type="text" name="nome" placeholder="Nome completo" required>
+        <input class="input-field" type="text" name="cpf" placeholder="cpf" required="\d{11}">
+        <input class="input-field" type="date" name="dataNasc" placeholder="Data de Nascimento" required>
+        <input class="input-field" type="tel" name="tel" placeholder="() xxxxx - xxxx" required="\d{10,15}">
+        <input class="input-field" type="number" name="idade" placeholder="Idade" required>
+        <input class="input-field" type="number" name="peso" placeholder="Peso (kg)" step="0.01" required>
+        <input class="input-field" type="number" name="altura" placeholder="Altura (cm)" step="0.01" required>
+        <button type="submit">Cadastrar</button>
+        <button type="button" id="limparCampos">Limpar</button>
+
+    </form>
+<script>
+ // Adicionando um evento de clique ao botão de limpar campos
+ document.getElementById('limparCampos').addEventListener('click', function() {
+        // Obtendo todos os campos de entrada do formulário
+        const campos = document.querySelectorAll('.input-field');
+        // Iterando sobre cada campo e limpando o valor
+        campos.forEach(function(campo) {
+            campo.value = '';
+        });
+    });
+
+     // Formatando o campo de CPF
+     const cpfInput = document.querySelector('input[name="cpf"]');
+    cpfInput.addEventListener('input', function() {
+        // Remove tudo exceto números
+        const cleaned = this.value.replace(/\D/g, '');
+         // Limita a 11 caracteres
+         const truncated = cleaned.slice(0, 11);
+        // Formatação do CPF: xxx.xxx.xxx-xx
+        const formatted = truncated.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        // Define o valor formatado de volta no campo
+        this.value = formatted;
+    });
+
+    // Formatando o campo de telefone
+    const telInput = document.querySelector('input[name="tel"]');
+    telInput.addEventListener('input', function() {
+        // Remove tudo exceto números
+        const cleaned = this.value.replace(/\D/g, '');
+        // Limita a 11 caracteres
+        const truncated = cleaned.slice(0, 11);
+        // Formatação do telefone: xx xxxxx-xxxx
+        const formatted = truncated.replace(/(\d{2})(\d{5})(\d{4})/, '$1 $2-$3');
+        // Define o valor formatado de volta no campo
+        this.value = formatted;
+    });
+
+    document.getElementById('cadastroCliente').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar o envio padrão do formulário
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        fetch('/cadastro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                // Limpar campos após o cadastro bem-sucedido
+                const campos = document.querySelectorAll('.input-field');
+                campos.forEach(function(campo) {
+                    campo.value = '';
+                });
+                alert('Cadastro realizado com sucesso!');
+            } else {
+                throw new Error('Erro ao cadastrar cliente.');
+            }
+        })
+        .catch(err => console.error('Erro:', err));
+    });
+</script>
+</body>
+</html>
+<main>    
+</main>
+<footer>
+    <p>© 2024 Nutrição Eficiente. Todos os direitos reservados.</p>
+</footer>    
+</body>
+</html>

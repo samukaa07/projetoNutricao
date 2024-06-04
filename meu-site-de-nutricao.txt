@@ -1,0 +1,16 @@
+meu-site-de-nutricao/
+|-- node_modules/
+|-- public/
+|   |-- css/
+|   |   `-- style.css
+|   `-- js/
+|       `-- clientes.js 
+|-- views/
+|   |-- index.html
+|   |-- sobre.html
+|   |-- cadastro.html
+|   |-- contato.html
+|   |-- clientes.html
+|   
+|-- app.js
+`-- package.json

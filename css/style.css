@@ -1,0 +1,130 @@
+/* Adicione estilos para os elementos da página */
+
+.input-field {
+    width: 8%;        /* Garante que o input ocupe todo o espaço disponível */
+    padding: 10px;      /* Adiciona um padding para melhorar a legibilidade */
+    margin: 5px 0;      /* Espaçamento vertical entre os campos */
+    box-sizing: border-box; /* Garante que padding e borda sejam incluídos na largura */
+}
+
+
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #afaaaa;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+nav {
+    background-color: #333;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+a {
+    color: #2f0dee;
+    text-decoration: none;
+}
+
+b {
+    color: #7e060c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+ 
+table {
+    width: 100%;        /* Faz a tabela ocupar todo o espaço horizontal disponível */
+    border-collapse: collapse; /* Remove os espaços entre as bordas das células */
+    margin-bottom: 20px; /* Espaçamento abaixo da tabela */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Adiciona bordas leves às células */
+    padding: 8px;       /* Espaçamento interno nas células */
+    text-align: left;   /* Alinha o texto à esquerda */
+}
+
+thead {
+    background-color: #4CAF50; /* Cor de fundo para o cabeçalho da tabela */
+    color: white;      /* Cor do texto no cabeçalho */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cor de fundo para linhas alternadas */
+}
+
+tr:hover {
+    background-color: #ddd; /* Cor de fundo ao passar o mouse */
+}
